@@ -1,0 +1,18 @@
+{
+  "editor": {
+    "js": [
+      "editor-4ed993c7.js"
+    ],
+    "css": [],
+    "dependencies": []
+  },
+  "main": {
+    "js": [
+      "main-c98009a6.js"
+    ],
+    "css": [
+      "main-48354954.css"
+    ],
+    "dependencies": []
+  }
+}

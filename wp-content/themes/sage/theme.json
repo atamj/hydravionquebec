@@ -1,0 +1,116 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "duotone": [],
+      "palette": [
+        {
+          "color": "#ffffff",
+          "name": "base",
+          "slug": "base"
+        },
+        {
+          "color": "#19437f",
+          "name": "primary",
+          "slug": "primary"
+        },
+        {
+          "color": "#003266",
+          "name": "primaryDark",
+          "slug": "primary-dark"
+        },
+        {
+          "color": "#00264d",
+          "name": "primaryDarker",
+          "slug": "primary-darker"
+        },
+        {
+          "color": "#AAC9E9",
+          "name": "primaryLight",
+          "slug": "primary-light"
+        },
+        {
+          "color": "#32c5f4",
+          "name": "secondary",
+          "slug": "secondary"
+        },
+        {
+          "color": "#F6F6F6",
+          "name": "tertiary",
+          "slug": "tertiary"
+        },
+        {
+          "color": "#000000",
+          "name": "foreground",
+          "slug": "foreground"
+        },
+        {
+          "color": "#c02b0a",
+          "name": "danger",
+          "slug": "danger"
+        }
+      ]
+    },
+    "typography": {
+      "fontSizes": [
+        {
+          "size": "0.75rem",
+          "slug": "xs"
+        },
+        {
+          "size": "0.875rem",
+          "slug": "sm"
+        },
+        {
+          "size": "1rem",
+          "slug": "base"
+        },
+        {
+          "size": "1.125rem",
+          "slug": "lg"
+        },
+        {
+          "size": "1.25rem",
+          "slug": "xl"
+        },
+        {
+          "size": "1.5rem",
+          "slug": "2xl"
+        },
+        {
+          "size": "1.875rem",
+          "slug": "3xl"
+        },
+        {
+          "size": "2.25rem",
+          "slug": "4xl"
+        },
+        {
+          "size": "3rem",
+          "slug": "5xl"
+        },
+        {
+          "size": "3.75rem",
+          "slug": "6xl"
+        },
+        {
+          "size": "4.5rem",
+          "slug": "7xl"
+        },
+        {
+          "size": "6rem",
+          "slug": "8xl"
+        },
+        {
+          "size": "8rem",
+          "slug": "9xl"
+        }
+      ]
+    }
+  },
+  "styles": {
+
+  }
+}

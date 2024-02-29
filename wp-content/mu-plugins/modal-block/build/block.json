@@ -1,0 +1,87 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "create-block/modal-block",
+  "version": "0.1.0",
+  "title": "Modal Block",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "Example block scaffolded with Create Block tool.",
+  "supports": {
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "color": {
+      "gradients": true
+    },
+    "background": true
+  },
+  "attributes": {
+    "backgroundColor": {
+      "type": "string"
+    },
+    "backgroundGradient": {
+      "type": "string"
+    },
+    "backgroundOption": {
+      "type": "string"
+    },
+    "closeButtonColor": {
+      "type": "string"
+    },
+    "showCloseButton": {
+      "type": "boolean",
+      "default": true
+    },
+    "showOpenButton": {
+      "type": "boolean",
+      "default": true
+    },
+    "buttonStyle": {
+      "type": "string",
+      "default": "fill"
+    },
+    "buttonWidth": {
+      "type": "string",
+      "default": "100px"
+    },
+    "buttonAlignment": {
+      "type": "string",
+      "default": "justification-left"
+    },
+    "modalMaxWidth": {
+      "type": "string",
+      "default": "500px"
+    },
+    "modalMaxHeight": {
+      "type": "string",
+      "default": "500px"
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": "Open modal"
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundImageOpacity": {
+      "type": "number",
+      "default": 100
+    },
+    "backgroundOpacity": {
+      "type": "number",
+      "default": 100
+    },
+    "blockId": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "modal-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

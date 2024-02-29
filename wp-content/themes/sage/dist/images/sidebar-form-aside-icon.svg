@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Mode_Isolation" data-name="Mode Isolation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 77 77">
+    <defs>
+        <style>
+            .cls-1 {
+            fill: none;
+            stroke: #fff;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2px;
+            }
+
+            .cls-2 {
+            fill: #17cae9;
+            }
+        </style>
+    </defs>
+    <g id="Group_359" data-name="Group 359">
+        <g id="Group_348" data-name="Group 348">
+            <rect id="Rectangle_277" data-name="Rectangle 277" class="cls-2" width="77" height="77"/>
+        </g>
+        <g id="Group_358" data-name="Group 358">
+            <g id="Group_357" data-name="Group 357">
+                <g id="Group_353" data-name="Group 353">
+                    <g id="Group_352" data-name="Group 352">
+                        <g id="Group_351" data-name="Group 351">
+                            <g id="Group_350" data-name="Group 350">
+                                <g id="Group_349" data-name="Group 349">
+                                    <path id="Rectangle_278" data-name="Rectangle 278" class="cls-1" d="M23.05,23.95h30.9c1.2,0,2.2,1,2.2,2.2v27.3c0,1.2-1,2.2-2.2,2.2H23.05c-1.2,0-2.2-1-2.2-2.2V26.15c-.0001-1.2,.9999-2.2,2.2-2.2Z"/>
+                                </g>
+                                <line id="Line_40" data-name="Line 40" class="cls-1" x1="23.05" y1="31.05" x2="53.9499" y2="31.05"/>
+                                <path id="Path_581" data-name="Path 581" class="cls-1" d="M46.1499,40.95v-4.6h4.6"/>
+                                <path id="Path_582" data-name="Path 582" class="cls-1" d="M36.2499,40.95v-4.6h4.6"/>
+                                <path id="Path_583" data-name="Path 583" class="cls-1" d="M26.3499,40.95v-4.6h4.6"/>
+                                <path id="Path_584" data-name="Path 584" class="cls-1" d="M36.2499,50.25v-4.6h4.6"/>
+                                <path id="Path_585" data-name="Path 585" class="cls-1" d="M46.1499,50.25v-4.6h4.6"/>
+                                <path id="Path_586" data-name="Path 586" class="cls-1" d="M26.3499,50.25v-4.6h4.6"/>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group_356" data-name="Group 356">
+                    <g id="Group_354" data-name="Group 354">
+                        <line id="Line_41" data-name="Line 41" class="cls-1" x1="46.1499" y1="26.65" x2="46.1499" y2="21.25"/>
+                    </g>
+                    <g id="Group_355" data-name="Group 355">
+                        <line id="Line_42" data-name="Line 42" class="cls-1" x1="30.9499" y1="21.25" x2="30.9499" y2="26.65"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,101 @@
+body:not(.wp-admin):not(.block-editor-iframe__body) .modal {
+    background-color: #000;
+    background-color: rgba(0, 0, 0, .4);
+    display: none;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 7
+}
+
+body:not(.wp-admin):not(.block-editor-iframe__body) .modal.modal-open {
+    animation: fade-in .25s ease-in-out both;
+    display: flex
+}
+
+body:not(.wp-admin):not(.block-editor-iframe__body) .modal.modal-open .modal-content {
+    animation: fade-in-bottom .25s ease-in-out both
+}
+
+body:not(.wp-admin):not(.block-editor-iframe__body) .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    opacity: 0;
+    position: relative;
+    transform: translateY(-50px);
+    width: 90%;
+    z-index: 2
+}
+
+body:not(.wp-admin):not(.block-editor-iframe__body) .modal-close-button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1
+}
+
+body:not(.wp-admin):not(.block-editor-iframe__body) .modal-close-button:focus, body:not(.wp-admin):not(.block-editor-iframe__body) .modal-close-button:hover {
+    color: #000;
+    cursor: pointer;
+    text-decoration: none
+}
+
+body:not(.wp-admin):not(.block-editor-iframe__body) .modal-overlay-img {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -o-object-fit: cover;
+    object-fit: cover
+}
+
+body:not(.wp-admin):not(.block-editor-iframe__body) .modal-block-open-button {
+  
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    padding: .5em 1em;
+    text-decoration: none;
+    transition: background-color .3s ease
+}
+
+body:not(.wp-admin):not(.block-editor-iframe__body) .modal-block-open-button:focus, body:not(.wp-admin):not(.block-editor-iframe__body) .modal-block-open-button:hover {
+    background-color: #005a87
+}
+
+.modal-overlay, .modal-overlay-img {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade-in-bottom {
+    0% {
+        opacity: 0;
+        transform: translateY(50px)
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}

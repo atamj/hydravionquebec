@@ -1,0 +1,13 @@
+/* CSS Document */
+
+#main-menu>.menu-item-has-children>.sub-menu {
+    padding: 5px 20px;
+    margin-left: -20px;
+}
+.bg-primary #main-menu>.menu-item-has-children>.sub-menu {
+    background: rgb(25,67,127) !important;
+}
+
+.slider-carousel-container {
+    bottom: calc(2rem + 32px);
+}

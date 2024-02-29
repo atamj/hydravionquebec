@@ -1,0 +1,250 @@
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+
+a {
+    text-decoration: none;
+}
+
+.mapboxgl-popup {
+    max-width: 80vw;
+    max-height: 80vh;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.mapboxgl-popup__street-view {
+    margin-top: 5px;
+    height: 400px;
+    width: 480px;
+    max-width: 100%;
+}
+
+.mapboxgl-popup__text {
+    max-height: 300px;
+    width: 240px;
+}
+
+.map-card {
+    position: absolute;
+    left: 2vw;
+    top: 7.5vh;
+    padding-top: 20px;
+    min-width: 135px;
+    max-width: 450px;
+    min-height: 15vh;
+    max-height: 80vh;
+    float: left;
+    clear: left;
+    background-color: #222;
+    color: #eee;
+    overflow-y: auto;
+    transition: width 1s, height 1s, top 1s, left 1s, bottom 1s;
+    -webkit-transition: width 1s, height 1s, top 1s, left 1s, bottom 1s; /* For Safari 3.1 to 6.0 */
+}
+
+.map-card__title {
+    padding: 0 20px;
+    font-size: 4rem;
+    line-height: 1.2em;
+    font-weight: bold;
+}
+.map-card__body {
+    padding: 10px 20px 0 20px;
+    /*max-height: inherit;*/
+}
+.map-card__body p {
+    padding: 1em 0 0 0;
+    margin: 0;
+}
+
+.map-card__nav {
+    text-align: right;
+    color: #aaa;
+    font-size: .8em;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.map-card__nav__icon {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+
+
+.map-card a {
+    color: #ddd;
+}
+
+@keyframes map-marker {
+    from {font-size: 0px;}
+    to {font-size: 48px;}
+}
+
+.JCHS-map-marker {
+    font-size: 48px;
+    color: #eee;
+    stroke: black;
+    background-color: black;
+    cursor: pointer;
+    animation-name: map-marker;
+    animation-duration: 0.7s;
+    animation-timing-function: cubic-bezier(.17,.89,.2,1.22);
+}
+
+.marker__bg_circle i { border-radius: 50%; }
+.marker__bg_square i { border-radius: 10%; }
+
+.marker__info {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="snow" d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm1 13h-2v-6h2v6zm0-8h-2V7h2v2z"/><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>')  no-repeat;
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.marker__coffee {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path stroke="black" stroke-width="1" fill="snow" d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.9 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>')  no-repeat;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+
+#map2 h1 {
+    font-size: 4rem;
+    line-height: 1.2em;
+}
+
+
+
+#map2 p {
+    margin-bottom: .5rem;
+}
+
+#map2 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#map2 {
+
+    width: 100%;
+    overflow: hidden;
+    padding-right: 20px;
+}
+
+@media screen and (max-width: 1080px) {
+    #features {
+        width: 40%;
+        margin-left: .5rem;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .map-card {
+       
+        margin-left: 0;
+        background-color:rgba(0, 0, 0, 0.6);
+    }
+    .map-card__body, .map-card__title {
+        padding: 5px;
+    }
+}
+
+@media screen and (max-height: 350px) {
+    .map-card {
+        margin-top: 0;
+    }
+}
+
+
+@media screen and (max-width: 1500px) {
+    #map2 h1 {
+        font-size: 3.5rem;
+    }
+}
+
+
+@media screen and (max-width: 1330px) {
+    #map2 h1 {
+        font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #map2 h1 {
+        font-size: 2.25rem;
+    }
+}
+
+
+@media screen and (max-width: 840px) {
+    #map2 h1 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 790px) {
+    #map2 h1 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    #map2 h1 {
+        font-size: 1.5rem;
+    }
+
+    section.active {
+        opacity: .6;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    #map2 h1 {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #map2 h3 {
+        font-size: 1.5rem;
+    }
+}
+
+#share {
+    position: absolute;
+    z-index: 999;
+    right: 0;
+    top: 0;
+    background-color: #fff;
+    padding-top: .2rem;
+    padding-right: .2rem;
+    padding-left: .3rem;
+    padding-bottom: .1rem;
+    font-weight: 600;
+    color: #333;
+    opacity: .8;
+    font-size: .7rem;
+    text-transform: uppercase;
+}
+
+
+.mapboxgl-marker svg {
+    cursor: pointer;
+    transform: translate(-45%, -45%);
+}
+
+
+
+#card[data-scene-number="0"] #card-title{
+    color: red !important;
+
+}

@@ -1,0 +1,112 @@
+@layer base {
+
+
+        select,
+        input,
+        textarea,
+        h1,
+        .h1,
+        .btn,
+        h2,
+        .h2,
+        h3,
+        .h3,
+        h4,
+        .h4
+        {
+            font-size: clamp(calc(var(--min-font-size) * 1px), calc(var(--font-size) * 1px), calc(var(--font-size) / (1920 / 100) * 1vw)) !important;
+            /*line-height: calc(var(--line-height-px) / var(--font-size)) !important;*/
+        }
+
+
+    select, input, textarea {
+        --font-size: 16;
+        --min-font-size: 14;
+        --line-height-px: 18;
+    }
+    /*body, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h6, .h6, .btn, .categories a {*/
+    /*    font-size: clamp(calc(var(--min-font-size) * 1px), calc(var(--font-size) * 1px), calc(var(--font-size) / (1920 / 100) * 1vw));*/
+    /*    line-height: calc(var(--line-height-px) / var(--font-size));*/
+    /*}*/
+
+    /*body {*/
+    /*    --font-size: 20;*/
+    /*    --min-font-size: 18;*/
+    /*    --line-height-px: 30;*/
+
+    /*}*/
+
+    h1 {
+        @apply text-white font-semibold;
+    }
+
+    .btn {
+            --font-size: 18;
+            --min-font-size: 16;
+            --line-height-px: 18;
+    }
+    /*!*h1, .h1, h2, .h2, h3, .h3, h4, .h4, h6, .h6 {*!*/
+    /*!*    @apply font-display;*!*/
+    /*!*}*!*/
+
+    h1,
+    .h1 {
+        --font-size: 60;
+        --min-font-size: 40;
+        --line-height-px: 75;
+    }
+
+    h2,
+    .h2 {
+        --font-size: 36;
+        --min-font-size: 30;
+        --line-height-px: 45;
+    }
+    h3,
+    .h3 {
+        --font-size: 28;
+        --min-font-size: 24;
+        --line-height-px: 40;
+    }
+    h4,
+    .h4 {
+        --font-size: 24;
+        --min-font-size: 20;
+        --line-height-px: 30;
+    }
+
+
+    /*.categories a {*/
+    /*    --font-size: 18;*/
+    /*    --min-font-size: 14;*/
+    /*    --line-height-px: 18;*/
+    /*}*/
+
+
+    /*:where(h3 + h4) {*/
+    /*    margin-top: 1.5rem;*/
+    /*}*/
+    /*!*h4,*!*/
+    /*!*.h4 {*!*/
+    /*!*    --font-size: 36;*!*/
+    /*!*    --min-font-size: 32;*!*/
+    /*!*    --line-height-px: 36;*!*/
+    /*!*}*!*/
+
+    /*!*h6,*!*/
+    /*!*.h6 {*!*/
+    /*!*    --font-size: 22;*!*/
+    /*!*    --min-font-size: 18;*!*/
+    /*!*    --line-height-px: 28;*!*/
+    /*!*}*!*/
+
+    /*!*.btn {*!*/
+    /*!*    --font-size: 32;*!*/
+    /*!*    --min-font-size: 16;*!*/
+    /*!*    --line-height-px: 32;*!*/
+    /*!*}*!*/
+
+    /*p + p {*/
+    /*    margin-top: 1.5rem;*/
+    /*}*/
+}

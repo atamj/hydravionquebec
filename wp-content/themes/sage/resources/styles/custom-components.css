@@ -1,0 +1,19 @@
+@layer components {
+    .btn {
+        padding: 1.5rem .75rem .75rem 1rem;
+        text-transform: uppercase;
+
+        @apply cursor-pointer leading-[1] rounded-[.375rem] bg-primary border border-primary px-[25px] py-[1.2rem] font-[600] text-primary shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-light hover:text-white hover:bg-secondary hover:border-secondary transition-all duration-200 ease-in-out;
+    }
+}
+
+/*min-height: min-content;*/
+/*--tw-bg-opacity: 1;*/
+/*background-color: rgb(255 255 255 / var(--tw-bg-opacity));*/
+/*padding-top: 0.75rem;*/
+/*padding-bottom: 0.75rem;*/
+/*font-size: 1.125rem;*/
+/*line-height: 1.75rem;*/
+/*font-weight: 600;*/
+/*--tw-text-opacity: 1;*/
+/*color: rgb(25 67 127 / var(--tw-text-opacity));*/
