@@ -9,7 +9,7 @@
                     letter-spacing: -.01em;
                 }
 
-                .cls-2, .cls-3 {
+                .cls-2, .cls-3 tspan {
                     fill: #fff;
                 }
 
@@ -20,7 +20,6 @@
                 .cls-3 {
                     font-family: MontserratRoman-Bold, Montserrat;
                     font-size: 12px;
-
                     font-weight: 700;
                 }
 
@@ -33,7 +32,8 @@
                 }
 
                 .cls-7 {
-                    fill: #004482;
+                    fill: none;
+                    /*fill: #004482;*/
                 }
 
                 .cls-8 {
@@ -55,7 +55,7 @@
                              points="168.5077 31.4525 175.4845 34.8178 174.7458 26.1174 168.5077 31.4525"/>
 
 
-                    <text class="cls-3" transform="translate(73.5707 21.9713)">
+                    <text class="cls-3" transform="translate(65.571 21.9713)">
                         <tspan x="0" y="0">SAGUENAY</tspan>
 
                     </text>
@@ -77,7 +77,7 @@
                              points="20.7382 81.4304 163.4415 81.4304 163.4415 65.8218 16.6088 65.8218 20.7382 81.4304"/>
                     <polygon class="cls-7"
                              points="181.5939 87.5216 188.5706 90.8868 187.8319 82.1864 181.5939 87.5216"/>
-                    <text class="cls-3 " transform="translate(101.2951 78.0401)">
+                    <text class="cls-3 " transform="translate(95.295 78.0401)">
                         <tspan x="0" y="0">QUÉBEC</tspan>
                     </text>
                     <g>
@@ -95,7 +95,7 @@
                              points="28.5112 112.6919 136.7379 112.6919 136.7379 97.0833 24.1373 97.0833 28.5112 112.6919"/>
                     <polygon class="cls-7"
                              points="155.0008 118.7831 161.9776 122.1483 161.2389 113.4479 155.0008 118.7831"/>
-                    <text class="cls-3" transform="translate(66.8125 109.8624)">
+                    <text class="cls-3" transform="translate(57.813 109.8624)">
                         <tspan x="0" y="0">MAURICIE</tspan>
 
                     </text>

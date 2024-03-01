@@ -221,7 +221,7 @@
                         if (selectedItem.leaflet) {
 
                             window.leafletmap = new LeafletFront(selectedItem);
-                      
+
 
                             console.log(window.leafletmap)
                         } else {

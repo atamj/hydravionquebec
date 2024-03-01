@@ -39,7 +39,7 @@
                 </div>
             @endif
             <div class="pt-48">
-                <x-packages-slider id="front-page"></x-packages-slider>
+                <x-packages-slider/>
             </div>
 
         </div>

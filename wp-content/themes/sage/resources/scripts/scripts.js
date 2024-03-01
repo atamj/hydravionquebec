@@ -59,7 +59,7 @@
 
 
     window.initSlider = function () {
-        let slides = document.querySelectorAll('.slider-carousel-container');
+        /*let slides = document.querySelectorAll('.slider-carousel-container');
 
 
         slides.forEach(function (slide) {
@@ -77,14 +77,36 @@
                 args.loop = true;
                 args.speed = 10000;
             }
-            new Swiper(`#${slide.id}`, args);
 
+        });*/
+
+        const swiper = new Swiper('.slider-carousel-container', {
+            pagination: false,
+            navigation: false,
+            spaceBetween: 32,
+            slidesPerView: 'auto',
+            autoplay: {
+                delay: 0,
+            },
+            loop: true,
+            speed: 10000,
+            init: false,
         });
+
+        document.querySelector('.slider-carousel-container').addEventListener('mouseenter', function () {
+            swiper.autoplay.stop()
+        });
+
+        // Désactivez le swiper lorsque la souris quitte
+        document.querySelector('.slider-carousel-container').addEventListener('mouseleave', function () {
+            swiper.autoplay.start();
+        });
+        swiper.init();
+
     }
 
 
     window.initSlider();
-
 
 
     // $(document).ready(function() {
@@ -100,5 +122,19 @@
     //         console.log('Layout complete');
     //     });
     // });
+    const baseUrl = window.location.href;
+    $("#gform_24").find("select#input_24_178, select#input_24_15, select#input_24_16, select#input_24_17").change(relaodPage);
+
+    function relaodPage(e) {
+        setTimeout(function () {
+            let currentUrl = window.location.href;
+            if (currentUrl !== baseUrl) {
+                location.reload();
+            } else {
+                relaodPage(e);
+            }
+        }, 1000);
+
+    }
 
 })(jQuery));

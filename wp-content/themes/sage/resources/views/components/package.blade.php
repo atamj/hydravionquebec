@@ -54,8 +54,9 @@
         </div>
         <div class="relative px-6 -bottom-[3rem] {{ $slides && count($slides) ? 'pb-[250px]' : 'pb-[75px]' }}">
             @if($slides && count($slides))
-		
-                <x-packages-slider :packages="$slides"></x-packages-slider>
+
+                <x-packages-slider :packages="$slides"/>
+
             @endif
         </div>
     </div>

@@ -99,7 +99,6 @@ const swiperInstances = [];
 			},
 		},
 	});
-
 	swiperInstances.push(slider);
 });
 
