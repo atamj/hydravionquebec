@@ -1,5 +1,6 @@
 ((($) => {
     const SELECTORS = {
+        saison: ".saison select",
         region: ".package_region select",
         type: ".package_type select",
         group: ".package_group select",
@@ -24,15 +25,18 @@
             this.removedOptions = [];
             this.selectors = this.cacheSelectors();
             this.isFront = postData.isFront;
-            this.setDefaultSelected();
+            // this.setDefaultSelected();
             this.selectedOptions = this.getSelectedOptions();
             this.homeUrl = postData.home_url;
             this.initEventListeners();
+            this.firstSelectedSaison = this.selectedOptions.saison;
+            this.firstSelectedRegion = this.selectedOptions.region;
 
 
         }
 
         setDefaultSelected() {
+            this.selectors.saison.val(this.defaultSelected.saison);
             this.selectors.region.val(this.defaultSelected.package_region);
             this.selectors.type.val(this.defaultSelected.package_type);
             this.selectors.group.val(this.defaultSelected.package_group);
@@ -52,7 +56,7 @@
         }
 
         initEventListeners() {
-            ['region', 'type', 'group', 'package'].forEach(name => {
+            ['saison' ,'region', 'type', 'group', 'package'].forEach(name => {
                 this.selectors[name].on("change", $.proxy(this.updatePackage, this, name));
             });
         }
@@ -68,6 +72,7 @@
         getSelectedOptions() {
             let packageStringFormatted = this.selectors.package.val().split("|")[0];
             const selectedOptions = {
+                saison: this.taxonomies.saison.terms[this.selectors.saison.get(0).value],
                 region: this.taxonomies.package_region.terms[this.selectors.region.get(0).value],
                 type: this.taxonomies.package_type.terms[this.selectors.type.get(0).value],
                 group: this.taxonomies.package_group.terms[this.selectors.group.get(0).value],
@@ -79,6 +84,7 @@
 
         getSelectedTaxonomiesTerms() {
             const selectedTaxonomies = {
+                saison: this.selectors.region.val(),
                 package_region: this.selectors.region.val(),
                 package_type: this.selectors.type.val(),
                 package_group: this.selectors.group.val(),
@@ -91,7 +97,7 @@
                 });
         }
 
-        updatePackage(type) {
+        updatePackage(type, name) {
             if (type !== 'package') {
                 this.selectedOptions.package = null;
                 this.selectors.package.val('');
@@ -99,32 +105,85 @@
 
             this.selectedOptions = this.getSelectedOptions();
 
-            this.updatePackagesList();
+            // this.updatePackagesList();
 
 
             let lastSelectedOptionKey = this.getLastSelectedOptionKey();
-            this.updateCurrentUrl(lastSelectedOptionKey);
+            this.updateCurrentUrl(lastSelectedOptionKey, type);
 
 
             this.updateView(this.selectedOptions[lastSelectedOptionKey], lastSelectedOptionKey);
 
         }
 
-        updateCurrentUrl(lastSelectedOptionKey) {
+        updateCurrentUrl(lastSelectedOptionKey, type) {
             let newUrl = this.homeUrl + '/';
-
+            console.log(type);
             Object.values(this.selectedOptions).forEach((option) => {
                 if (option) {
-                    newUrl += option.permalink + '/';
+                    switch (type) {
+                        case 'saison':
+                            newUrl = this.homeUrl + '/' + this.selectedOptions.saison.permalink;
+                            location.href = newUrl;
+                            break;
+                        case 'region':
+                            newUrl = this.homeUrl + '/' + this.selectedOptions.saison.permalink + '/' + this.selectedOptions.region.permalink;
+                            location.href = newUrl;
+                            break;
+                        case 'type':
+                            newUrl = this.homeUrl + '/' + this.selectedOptions.saison.permalink + '/' + this.selectedOptions.region.permalink + '/' + this.selectedOptions.type.permalink;
+                            location.href = newUrl;
+                            break;
+                        case 'group':
+                            newUrl = this.homeUrl + '/' + this.selectedOptions.saison.permalink + '/' + this.selectedOptions.region.permalink + '/' + this.selectedOptions.type.permalink + '/' + this.selectedOptions.group.permalink;
+                            location.href = newUrl;
+                            break;
+                        case 'package':
+                            newUrl = this.selectedOptions.package.permalink;
+                            if (this.selectedOptions.package.permalink !== location.href)
+                            {
+                                location.href = newUrl;
+                            }
+                            break;
 
-                    if (lastSelectedOptionKey === 'package') {
-                        newUrl = option.permalink;
                     }
-                }
-            });
 
+                   /* if (type === 'saison' ) {
+                        newUrl = this.homeUrl + '/' + this.selectedOptions.saison.permalink;
+                        location.href = newUrl;
+                    // } else if (this.firstSelectedRegion !== this.selectedOptions.region) {
+                    } else if (type === 'region') {
+                        newUrl = this.homeUrl + '/' + this.selectedOptions.saison.permalink + '/' + this.selectedOptions.region.permalink;
+                        location.href = newUrl;
+                    } else if (type === 'type') {
+                        newUrl = this.homeUrl + '/' + this.selectedOptions.saison.permalink + '/' + this.selectedOptions.region.permalink + '/' + this.selectedOptions.type.permalink;
+                        location.href = newUrl;
+                    } else if (type === 'group') {
+                        newUrl = this.homeUrl + '/' + this.selectedOptions.saison.permalink + '/' + this.selectedOptions.region.permalink + '/' + this.selectedOptions.type.permalink + '/' + this.selectedOptions.group.permalink;
+                        location.href = newUrl;
+                    } else if (lastSelectedOptionKey === 'package') {
+                        // console.log('package');
+                        newUrl = option.permalink;
+                    } else {
+                        // console.log('default');
+                        let oldUrl = location.href;
+                        newUrl += option.permalink + '/';
+                        // console.log(oldUrl);
+                        // console.log(newUrl);
+                        // console.log(oldUrl.length < newUrl.length)
+                        if (oldUrl !== newUrl && oldUrl.length < newUrl.length) {
+                            // location.href = newUrl;
+                        } else {
+                            window.history.pushState({}, '', newUrl);
+                        }
+                    }*/
+                }
+                // location.href = newUrl;
+
+            });
             // Update the URL in the browser's history and address bar without causing a page reload
-            window.history.pushState({}, '', newUrl);
+            // window.history.pushState({}, '', newUrl);
+            // console.log(newUrl);
         }
 
         getLastSelectedOptionKey() {
@@ -182,7 +241,11 @@
             if (selectedItem && $dynamicPost.length) {
 
                 $currentPost.hide();
+
                 switch (type) {
+                    case 'saison':
+                        selectedItem.slides = this.avalaiblePackages;
+                        break;
                     case 'region':
                         if (selectedItem.id != 21) {
                             selectedItem.slides = this.taxonomies.package_type.terms;

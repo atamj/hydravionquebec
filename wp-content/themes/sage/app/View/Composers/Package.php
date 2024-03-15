@@ -46,17 +46,20 @@ class Package extends Composer
             if ($_POST['item']['leaflet']) {
                 $leafetDecoded = str_replace("\\", "", $_POST['item']['leaflet']);
                 $leafetDecoded = json_decode($leafetDecoded);
-                if (!empty($leafetDecoded->layers) || $leafetDecoded->geojson != '') {
-                    $leafletMap = json_encode($_POST['item']['leaflet']);
+                if ($leafetDecoded) {
+                    if (!empty($leafetDecoded->layers) || $leafetDecoded->geojson != '') {
+                        $leafletMap = json_encode($_POST['item']['leaflet']);
+                    }
                 }
             }
         } else {
             $leafletMapField = get_field('leaflet_map');
             $leafetDecoded = str_replace("\\", "", $leafletMapField);
             $leafetDecoded = json_decode($leafetDecoded);
-
-            if (!empty($leafetDecoded->layers) || $leafetDecoded->geojson != '') {
-                $leafletMap = $leafletMapField;
+            if ($leafetDecoded) {
+                if (!empty($leafetDecoded->layers) || $leafetDecoded->geojson != '') {
+                    $leafletMap = $leafletMapField;
+                }
             }
         }
 
@@ -107,7 +110,7 @@ class Package extends Composer
 
         return get_field('prix_base', $obj);
     }
-    
+
     public function get_title()
     {
         $obj = is_archive() ? get_queried_object() : null;

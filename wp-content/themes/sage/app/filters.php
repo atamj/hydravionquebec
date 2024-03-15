@@ -61,7 +61,9 @@ add_filter('gform_field_value_package_group', function ($value) {
 
 
     if (is_single() && get_post_type() == 'package') {
-        return get_the_terms(get_the_ID(), 'package_group')[0]->term_id;
+        if(get_the_terms(get_the_ID(), 'package_group')) {
+            return get_the_terms(get_the_ID(), 'package_group')[0]->term_id;
+        }
     }
 
     $term_slug = get_query_var('package_group') ? sanitize_text_field(get_query_var('package_group')) : '';

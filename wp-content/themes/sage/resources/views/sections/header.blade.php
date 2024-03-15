@@ -40,7 +40,7 @@
 		 x-transition:leave="transition ease-in-out duration-300 transform"
 		 x-transition:leave-start="-translate-x-0"
 		 x-transition:leave-end="translate-x-full"
-		 class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-primary text-white border-r overflow-y-auto">
+		 class="fixed w-full top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-primary text-white border-r overflow-y-auto">
 		<div class="flex items-center mb-8">
 			<button @click="open = !open" class="navbar-close ml-auto absolute right-0 top-0 p-6">
 				<svg class="w-[20px] h-[20px] text-white cursor-pointer hover:text-secondary"

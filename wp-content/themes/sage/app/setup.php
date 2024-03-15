@@ -91,7 +91,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('swiper', RESOURCE_URL . '/styles/lib/swiper-bundle.css', array(), null);
 });
 
-add_action('init', function () {
+/*add_action('init', function () {
     global $wp_rewrite;
     $region_terms = get_terms(array(
         'taxonomy' => 'package_region',
@@ -106,8 +106,34 @@ add_action('init', function () {
             add_rewrite_rule("^$slug/?$", 'index.php?package_region=' . $slug, 'top');
         }
     }
-}, 11);
+}, 11);*/
 
+add_action('init', function () {
+    global $wp_rewrite;
+    $saison_terms = get_terms(array(
+        'taxonomy' => 'saison',
+        'hide_empty' => false,
+    ));
+
+    $region_terms = get_terms(array(
+        'taxonomy' => 'package_region',
+        'hide_empty' => false,
+    ));
+
+    if (($saison_terms && !is_wp_error($saison_terms)) && ($region_terms && !is_wp_error($region_terms))) {
+        foreach ($saison_terms as $saison) {
+            $saison_slug = $saison->slug;
+            add_rewrite_rule("^$saison_slug/?$", 'index.php?saison=' . $saison_slug, 'top');
+            foreach ($region_terms as $region) {
+                $region_slug = $region->slug;
+
+                add_rewrite_rule("^$saison_slug/$region_slug/([^/]+)/([^/]+)/?$", 'index.php?package_type=$matches[1]&package_group=$matches[2]&saison=' . $saison_slug . '&package_region=' . $region_slug, 'top');
+                add_rewrite_rule("^$saison_slug/$region_slug/([^/]+)/?$", 'index.php?package_type=$matches[1]&saison=' . $saison_slug. '&package_region=' . $region_slug, 'top');
+                add_rewrite_rule("^$saison_slug/$region_slug/?$", 'index.php?saison=' . $saison_slug . '&package_region=' . $region_slug, 'top');
+            }
+        }
+    }
+}, 11);
 
 
 //// Hook my above function to the pre_get_posts action

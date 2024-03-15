@@ -122,19 +122,5 @@
     //         console.log('Layout complete');
     //     });
     // });
-    const baseUrl = window.location.href;
-    $("#gform_24").find("select#input_24_178, select#input_24_15, select#input_24_16, select#input_24_17").change(relaodPage);
-
-    function relaodPage(e) {
-        setTimeout(function () {
-            let currentUrl = window.location.href;
-            if (currentUrl !== baseUrl) {
-                location.reload();
-            } else {
-                relaodPage(e);
-            }
-        }, 1000);
-
-    }
 
 })(jQuery));

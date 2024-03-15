@@ -38,7 +38,7 @@
                     {!! get_field('featured_text') !!}
                 </div>
             @endif
-            <div class="pt-48">
+            <div class="pt-52">
                 <x-packages-slider/>
             </div>
 

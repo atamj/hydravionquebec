@@ -69,8 +69,8 @@
                 </div>
             </div>
         @endif
-
-            @if($leaflet_map)
+{{--@dump(is_tax('package_group'))--}}
+            @if($leaflet_map && is_tax('package_group'))
                 <div class="relative" style="height: calc(100vh - 75px);">
                     <x-map show="true" :title="get_the_title()"></x-map>
                 </div>

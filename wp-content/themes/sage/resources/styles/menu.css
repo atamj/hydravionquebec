@@ -54,6 +54,9 @@
     @apply text-primary
 }
 
+.sub-menu {
+    @apply ml-5;
+}
 
 .menu-item-has-children:not(.active) > .sub-menu {
     display:none;

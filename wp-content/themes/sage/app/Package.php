@@ -18,6 +18,10 @@ class Package
     {
 
         $this->taxonomies = [
+            'saison' => [
+                'label' => __('Saison'),
+                'slug' => 'saison',
+            ],
             'package_region' => [
                 'label' => __('Région'),
                 'slug' => 'region',
@@ -245,6 +249,7 @@ class Package
     public function get_default_selected()
     {
         $queriedObject = get_queried_object();
+        $package_saison = get_query_var('saison');
         $package_region_term = get_query_var('package_region_term');
         $package_group = get_query_var('package_group');
         $package_type = get_query_var('package_type');
@@ -260,6 +265,13 @@ class Package
                     $values[$key] = $taxonomy[0];
                 }
             }
+        }
+
+        if ($package_saison) {
+            $selected_saison = array_filter($this->taxonomies_terms['saison']['terms'], function ($item) use ($package_saison) {
+                return $item['permalink'] === $package_saison;
+            });
+            $values['saison'] = array_values($selected_saison)[0]['id'];
         }
 
         if ($package_region_term) {
@@ -289,23 +301,150 @@ class Package
 
     public function populate_choices($form)
     {
-        foreach ($form['fields'] as &$field) {
-            if ($field->cssClass == 'package_region') {
-                $field->choices = $this->get_taxonomy_choices('package_region');
-            }
-            if ($field->cssClass == 'package_type') {
-                $field->choices = $this->get_taxonomy_choices('package_type');
-            }
-            if ($field->cssClass == 'package_group') {
-                $field->choices = $this->get_taxonomy_choices('package_group');
-            }
-            if ($field->cssClass == 'packages') {
-                $field->choices = $this->get_posts_choices();
+        global $wp_query;
 
+        /** Récupérer les ids des champs qui devraient être sélectionné sur la page */
+        $selectedSaisonId = $this->get_default_selected()['saison'] ?? null;
+        $selectedRegionId = $this->get_default_selected()['package_region'] ?? null;
+        $selectedTypeId = $this->get_default_selected()['package_type'] ?? null;
+        $selectedGroupId = $this->get_default_selected()['package_group'] ?? null;
+        foreach ($form['fields'] as &$field) {
+            /** On récupère tous les choix (options) pour les taxonomies ou les destinations */
+            if (array_key_exists($field->inputName, $this->taxonomies)) {
+                $field->choices = $this->get_taxonomy_choices($field->inputName);
+            } elseif ($field->inputName === 'destination') {
+                $field->choices = $this->get_posts_choices();
+            }
+
+            switch ($field->inputName) {
+                case 'saison':
+                    foreach ($field->choices as &$choice) {
+                        $choice['isSelected'] = $choice['value'] == $selectedSaisonId;
+                    }
+                    break;
+                case 'package_region':
+                    foreach ($field->choices as $key => &$choice) {
+                        /** On filtre les destinations en fonction des filtres choisis pour afficher que les choix valides */
+                        $destination = array_filter($this->posts, function ($item) use ($choice, $selectedSaisonId) {
+                            return in_array($choice['value'], $item['taxonomies']['package_region']) && in_array($selectedSaisonId, $item['taxonomies']['saison']);
+                        });
+                        /**
+                         * Si on ne trouve rien dans les destinations, c'est que ce choix n'est pas valide donc on le supprime.
+                         * Si on a un choix de région sélectionné, on le met en isSelected
+                         */
+                        if (empty($destination)) {
+                            unset($field->choices[$key]);
+                        } elseif ($selectedRegionId) {
+                            $choice['isSelected'] = $selectedRegionId == $choice['value'];
+                        } elseif (isset($wp_query->query_vars['package_region'])) {
+                            $term = get_term_by('slug', $wp_query->query_vars['package_region'], 'package_region');
+                            if ($term->term_id == $choice['value']) {
+                                $choice['isSelected'] = true;
+                            }
+                        }
+                    }
+                    break;
+                case 'package_type':
+                    foreach ($field->choices as &$choice) {
+                        $choice['isSelected'] = $selectedTypeId == $choice['value'];
+                    }
+                    break;
+
+                case 'package_group':
+                    foreach ($field->choices as $key => &$choice) {
+//                        dump($selectedGroupId);
+                        if (!$selectedGroupId) {
+                            $packages = $this->getFilteredPackages(group_id: $choice['value']);
+                        } else {
+                            $packages = $this->getFilteredPackages();
+                        }
+//                        dump($packages->tax_query);
+                        if (!$packages->have_posts()) {
+                            unset($field->choices[$key]);
+                        } elseif ($selectedGroupId) {
+                            $choice['isSelected'] = $selectedGroupId == $choice['value'];
+                        } elseif (isset($wp_query->query_vars['package_group'])) {
+                            $term = get_term_by('slug', $wp_query->query_vars['package_group'], 'package_group');
+                            if ($term->term_id == $choice['value']) {
+                                $choice['isSelected'] = true;
+                            }
+                        }
+                    }
+                    break;
+                case 'destination':
+                    foreach ($field->choices as $key => &$choice) {
+
+                        $packages = $this->getFilteredPackages([$choice['value']]);
+                        if (!$packages->have_posts()) {
+                            unset($field->choices[$key]);
+                        } else {
+                            $choice['isSelected'] = is_single() && get_the_ID() == $choice['value'];
+                        }
+                    }
+                    break;
             }
         }
 
         return $form;
+    }
+
+    public function getFilteredPackages(array|bool $post__in = false, $group_id = false)
+    {
+        /** Récupérer les ids des champs qui devraient être sélectionné sur la page */
+        $selectedSaisonId = $this->get_default_selected()['saison'] ?? null;
+        $selectedRegionId = $this->get_default_selected()['package_region'] ?? null;
+        $selectedTypeId = $this->get_default_selected()['package_type'] ?? null;
+        $selectedGroupId = $this->get_default_selected()['package_group'] ?? null;
+
+        $tax_query = [];
+        $tax_query['relation'] = 'AND';
+
+//        if ($selectedSaisonId) {
+            $tax_query[] = [
+                'taxonomy' => 'saison',
+                'field' => 'term_id',
+                'terms' => $selectedSaisonId
+            ];
+//        }
+//        if ($selectedSaisonId && $selectedRegionId) {
+            $tax_query[] = [
+                'taxonomy' => 'package_region',
+                'field' => 'term_id',
+                'terms' => $selectedRegionId
+            ];
+//        }
+//        if ($selectedSaisonId && $selectedRegionId && $selectedTypeId) {
+            $tax_query[] = [
+                'taxonomy' => 'package_type',
+                'field' => 'term_id',
+                'terms' => $selectedTypeId
+            ];
+//        }
+        if ($group_id) {
+            $tax_query[] = [
+                'taxonomy' => 'package_group',
+                'field' => 'term_id',
+                'terms' => $group_id
+            ];
+        }
+        /*if ($group_id) {
+            $tax_query[] = [
+                'taxonomy' => 'package_group',
+                'field' => 'term_id',
+                'terms' => $group_id
+            ];
+        }*/
+
+        $query_args = [
+            'post_type' => 'package',
+            'tax_query' => $tax_query,
+            'posts_per_page' => -1,
+        ];
+
+        if ($post__in) {
+            $query_args['post__in'] = $post__in;
+        }
+        return new WP_Query($query_args);
     }
 
 
